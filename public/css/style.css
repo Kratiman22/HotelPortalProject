@@ -1,0 +1,253 @@
+
+ body{
+   /* font-family: "Markazi Text", serif;
+   font-size: larger;
+  font-optical-sizing:auto;
+  font-weight:500;
+  font-style: normal; */
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
+ }
+
+ .container{
+   flex: 1;
+ }
+ 
+ .navbar{
+    height: 7rem;
+ }
+
+ .fa-leaf{
+   margin-top: 20px;
+    color: rgb(251, 242, 242);
+    font-size: 2rem;
+    margin-left: 45px;
+
+ }
+
+
+ .head-text{
+   margin-left: 10px;
+   font-family: 'Pacifico', cursive;
+
+ }
+
+
+ .nav{
+    width: 50%;
+ }
+
+ .nav-link{
+   font-size: large;
+    margin-left: 45px;
+    color: rgb(255, 255, 255) !important;
+ }
+
+ .container-fluid{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+ }
+
+
+ /* Footer */
+ .foot{
+    height: 5rem;
+ }
+
+.copy{
+    margin-left: 1rem;
+}
+
+
+ .f-container{
+    display: inline-flex;
+    justify-content: end;
+    align-items: center;
+    margin-right: 2.5rem;
+    gap: 20px;
+ }
+
+ .social{
+    /* display: flex; */
+    /* justify-content: ; */
+    font-size: 1.5rem;
+    color: rgb(255, 255, 255);
+ }
+
+ .social-div{
+   gap: 20px;
+ }
+
+ .foot-text{
+   color:white;
+   font-size: 25px;
+   margin-top: 5px;
+   font-family: 'Pacifico', cursive;
+   /* font-family: 'Playfair Display', serif; */
+   /* font-family: 'Poppins', sans-serif; */
+   /* font-family: 'Roboto', sans-serif; */
+
+ }
+
+ .logo{
+   font-size: 2.5rem;
+   
+
+ }
+
+
+ /* Cards */
+
+ .listing-card{
+    border: none !important;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    /* width: 20rem; */
+ }
+ .card-img-top{
+    border-radius: 20px;
+    width: 100% !important;
+    object-fit: cover !important;
+ }
+ .card-body{
+    padding: 0 !important;
+ }
+
+ .list{
+    text-decoration: none;
+ }
+
+ .card-img-overlay{
+    opacity: 0;
+ }
+
+ .card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: rgb(255, 255, 255);
+    transition: ease-in-out;
+ }
+
+
+ /* Show */
+ .show-image{
+   height: 60vh;
+ }
+
+ .btn-show{
+   width: 100%;
+   display: flex;
+   justify-content: first baseline ;
+   gap: 1.5rem;
+   margin-top: 1.5rem;
+ }
+
+
+ .display-title{
+   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+   font-size: 25px;
+ }
+
+ .display-des{
+   /* font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal; */
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+ }
+
+.display-list{
+   font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Error */
+
+.error{
+   margin-top: 5rem;
+}
+
+
+/* Review */
+.fa-star{
+   /* display: flex;/ */
+   /* justify-content: start; */
+   /* align-items: center; */
+   font-size: .8rem;
+   margin-left: 3px;
+}
+
+.review{
+   height: 27vh;
+}
+
+.review-btn{
+   margin-top: 10px;
+}
+
+.signup{
+   height: 30rem;
+}
+.signup-card{
+   display: flex;
+   justify-content: center;
+   /* align-items: center; */
+   height: 25rem;
+}
+
+
+.review-link{
+   color: black;
+   text-decoration: underline;
+   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.review-link:hover{
+   text-decoration: none;
+   color: blueviolet;
+}
+.add-review{
+   display: flex;
+   justify-content: end;
+   align-items: center;
+}
+
+.signup-link{
+   display: flex;
+   justify-content: end;
+   align-items: center;
+   gap: 5px;
+}
+
+.parallax {
+   background-attachment: fixed;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+ }
+
+
+ /* Hover shadow effect for profile button */
+.profile-btn:hover {
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+   transition: box-shadow 0.3s ease;
+ }
+ 
+ /* Show hamburger icon on hover */
+ .profile-btn:hover .dropdown-indicator {
+   display: block;
+ }
+ 
+ /* Dropdown menu styling */
+ .dropdown-menu {
+   margin-top: 10px; /* Spacing between profile button and dropdown */
+ }
+
+ .social:hover {
+   color: #fff; /* Or a light color */
+   transform: scale(1.1);
+   transition: all 0.3s ease;
+ }
+ 

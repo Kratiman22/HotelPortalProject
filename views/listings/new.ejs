@@ -1,0 +1,55 @@
+<% layout("/layouts/boilerplate") %>
+    <div class="container mx-auto py-12 px-4">
+        <div class="bg-white shadow-lg rounded-lg p-8">
+            <h2 class="text-3xl font-semibold mb-6 text-center">Add New Listing</h2>
+
+            <form method="post" action="/explore" class="space-y-6 needs-validation" enctype="multipart/form-data" novalidate>
+                <div class="form-group mb-3">
+                    <lable for="title" class="text-lg text-gray-700">Enter Title</lable>
+                    <input class="form-control p-3 border border-gray-300 rounded-md w-full" type="text" name="listing[title]" id="title" placeholder="Enter a standout title for your property" required>
+                    <div class="valid-feedback">Title Looks Good!</div>
+                </div>
+                
+
+                <div class="form-group mb-3">
+                    <lable for="description" class="text-lg text-gray-700">Enter Description</lable>
+                    <textarea class="form-control p-3 border border-gray-300 rounded-md w-full" type="text" name="listing[description]" id="description" placeholder="Description..." rows="5" required></textarea>
+                </div>
+
+                <!-- <div class="form-group mb-3">
+                    <lable for="image" class="text-lg text-gray-700">Image Link</lable>
+                    <input class="form-control p-3 border border-gray-300 rounded-md w-full" type="text" name="listing[image]" id="image" placeholder="Image URL/Link">
+                </div> -->
+
+                <div class="form-group mb-3">
+                    <lable for="image" class="text-lg text-gray-700">Upload Image</lable>
+                    <input class="form-control p-3 border border-gray-300 rounded-md w-full" type="file" name="listing[image]" id="image">
+                </div>
+
+                <div class="form-group mb-3">
+                    <lable for="price" class="text-lg text-gray-700">Enter Price</lable>
+                    <input class="form-control  p-3 border border-gray-300 rounded-md w-full" type="text" name="listing[price]" id="price" placeholder="" required>
+                    <div class="invalid-feedback">Enter a valid format!</div>
+                </div>
+                <div class="row">
+                    <div class="form-group mb-3 col-md-4">
+                        <lable for="location" class="text-lg text-gray-700">Enter Location</lable>
+                        <input class="form-control  p-3 border border-gray-300 rounded-md w-full" type="text" name="listing[location]" id="location" placeholder="Jaipur, Rajasthan" required>
+                        <div class="invalid-feedback">Enter valid location!</div>
+                    </div>
+
+                    <div class="form-group mb-3 col-md-8">
+                        <lable for="country" class="text-lg text-gray-700">Enter Country</lable>
+                        <input class="form-control  p-3 border border-gray-300 rounded-md w-full" type="text" name="listing[country]" id="country" placeholder="India" required>
+                        <div class="invalid-feedback">Enter valid country name!</div>
+                    </div>
+                </div>
+                <div class="flex justify-center gap-6 mt-6">
+                    <a href="/explore" class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600">Cancel</a>
+                    <button type="submit" class="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600">Add Listing</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+

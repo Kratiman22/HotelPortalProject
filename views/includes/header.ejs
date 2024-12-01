@@ -1,0 +1,181 @@
+
+ <header class="py-10 navbar-expand-md bg-white-600 border-bottom">
+  <div class="container-fluid d-flex justify-content-between">
+    <a class="navbar-brand text-light d-flex flex-column align-items-center text-center" href="/">
+      <i class="fas fa-hotel text-black" style="font-size: 2.5rem;"></i>
+      <p class="head-text text-black" style="font-size: 1.5rem;">DreamDWell</p>
+    </a>
+    <!-- <a class="navbar-brand text-light" href="/"><i class="fas fa-leaf"></i><p class="head-text">DreamDWell</p></a> -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="text-center w-100 text-white">
+      <h1 class="text-5xl font-bold text-yellow-500">Welcome to DreamDWell</h1>
+      <p class="text-lg mt-4 text-black">Find your perfect home, effortlessly.</p>
+    </div>
+    <div class="dropdown ms-auto">
+      <button 
+        class="btn btn-secondary dropdown-toggle d-flex align-items-center" 
+        type="button" 
+        id="profileDropdown" 
+        data-bs-toggle="dropdown" 
+        aria-expanded="false">
+        <i class="fas fa-user-circle me-2"></i> Profile
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+        <% if(!currUsr) {  %>
+        <li>
+          <a class="dropdown-item" href="/signup">
+            <i class="fas fa-user-plus me-2"></i> Sign Up
+          </a>
+        </li>
+        <hr>
+        <li>
+          <a class="dropdown-item" href="/login">
+            <i class="fas fa-sign-in-alt me-2"></i> Log in
+          </a>
+        </li>
+        <% } %> <% if(currUsr) {  %>
+        <li>
+          <a class="dropdown-item" href="/profile">
+            <i class="fas fa-user-circle me-2"></i> My Account
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="/bookings">
+            <i class="fas fa-calendar-check me-2"></i> Bookings
+          </a>
+        </li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li>
+          <a class="dropdown-item text-danger" href="/logout">
+            <i class="fas fa-sign-out-alt me-2"></i> Logout
+          </a>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<section class="relative h-screen parallax" style="background-image: url('https://images.unsplash.com/photo-1462899006636-339e08d1844e?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+  <div class="absolute inset-0 bg-black opacity-50"></div>
+  <div class="relative z-10 text-center text-white pt-40">
+    <h2 class="text-4xl font-bold">Your Future Home Awaits</h2>
+    <p class="mt-4">Explore properties that match your lifestyle.</p>
+
+    <!-- Add a secondary CTA Button -->
+    <div class="mt-8">
+      <a href="/explore" class="bg-green-500 text-white px-6 py-2 rounded-md shadow-lg hover:bg-green-600 transition">
+        Explore Listings
+      </a>
+    </div>
+
+    <!-- Additional Information -->
+    <div class="mt-8">
+      <p class="text-lg">Find your dream home with ease. Browse homes, apartments, and more!</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="bg-white py-12 text-center">
+  <section class="bg-white py-12 text-center">
+    <h2 class="text-3xl font-semibold">Start Your Search</h2>
+    <form action="/search" method="GET" class="mt-6">
+      <input 
+        type="text" 
+        name="query" 
+        class="p-3 rounded-md w-80 text-black border border-gray-300 focus:ring focus:ring-blue-500" 
+        placeholder="Search for properties by location, type, or price...">
+      <button 
+        type="submit" 
+        class="bg-blue-500 text-white p-3 rounded-md ml-4 hover:bg-blue-600 transition">
+        Search
+      </button>
+    </form>
+  </section>
+  <div class="mt-6 flex justify-center space-x-4">
+    <a href="/explore/new" class="bg-green-500 text-white px-6 py-2 rounded-md shadow-lg hover:bg-green-600 transition">New Listing</a>
+    <a href="/explore" class="bg-gray-500 text-white px-6 py-2 rounded-md shadow-lg hover:bg-gray-600 transition">Show All</a>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<!-- Old Code -->
+
+<!-- <nav class="navbar navbar-expand-md bg-dark border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand text-light" href="/"><i class="fas fa-leaf"></i><p class="head-text">DreamDWell</p></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="nav navbar-nav">
+        <a class="nav-link display-des" href="/signup">Home</a>
+        <a class="nav-link display-des" href="/explore">Show All</a>
+        <a class="nav-link display-des" href="/explore/new">Add New</a>
+      </div>
+      <!-- Centered Search Bar -->
+      <!-- <div class="mx-auto">
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div> -->
+      <!-- Profile Dropdown -->
+        <!-- <div class="dropdown">
+          <button 
+            class="btn btn-secondary dropdown-toggle d-flex align-items-center" 
+            type="button" 
+            id="profileDropdown" 
+            data-bs-toggle="dropdown" 
+            aria-expanded="false">
+            <i class="fas fa-user-circle me-2"></i> Profile
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+            <% if(!currUsr) {  %>
+            <li>
+              <a class="dropdown-item" href="/signup">
+                <i class="fas fa-user-plus me-2"></i> Sign Up
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/login">
+                <i class="fas fa-sign-in-alt me-2"></i> Log in
+              </a>
+            </li>
+            <% } %> <% if(currUsr) {  %>
+            <li>
+              <a class="dropdown-item" href="/profile">
+                <i class="fas fa-user-circle me-2"></i> My Account
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/bookings">
+                <i class="fas fa-calendar-check me-2"></i> Bookings
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item text-danger" href="/logout">
+                <i class="fas fa-sign-out-alt me-2"></i> Logout
+              </a>
+            </li>
+            <% } %>
+          </ul>
+        </div>
+    </div>
+  </div>
+ </nav> -->
+ 

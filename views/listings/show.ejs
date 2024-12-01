@@ -1,0 +1,140 @@
+<% layout("/layouts/boilerplate") %>
+<script>
+    const mapToken = "<% process.env.GEOAPIFY_API_MAP %>";
+</script>
+
+
+      <section class="container mx-auto py-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden h-96">
+            <img src="<%= listing.image.url %>" class="w-full h-96 object-cover" alt="listing_image">
+        </div>
+
+        <div class="space-y-6">
+            <h2 class="text-3xl font-semibold text-gray-800"><%= listing.title %></h2>
+          <p class="text-gray-600 text-lg">Located in the heart of the city with stunning views of the skyline.</p>
+          <p class="text-gray-700 text-xl font-semibold">&#8377;<%= listing.price ? listing.price.toLocaleString("en-IN") : "Price not available." %></p>
+
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <p class="text-gray-700 mb-2"><strong>Owner: </strong><%= listing.owner.username %></p>
+            <h3 class="text-lg font-semibold text-gray-800">Description</h3>
+            <p class="text-gray-700"><%= listing.description ? listing.description : "Description is not provided." %></p>
+            <p class="text-gray-700 mt-3"><strong>Location: </strong><%= listing.location %> (<%= listing.country %>)</p>
+          </div>
+
+          <div class="mt-6">
+            <form method="post" action="/explore/<%= listing.id %>?_method=DELETE" class="mb-3">
+                <!-- <a class="text-blue-500 inline-block ml-5">Delete</a> -->
+                <button class="text-blue-500 ml-5">Delete</button>
+            </form>
+            <a href="/explore/<%= listing._id %>/edit" class="ml-4 text-white bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg inline-block">Edit</a>
+          </div>
+        </div>
+      </section>
+
+        <section class="container mx-auto py-12">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-6">Customer Reviews</h3>
+            <div class="mb-3 ml-3">
+                <a href="/explore/<%= listing._id %>/reviews" class="btn btn-secondary">Add Review</a>
+            </div>
+
+            <div class="space-y-4">
+                <% if (listing.reviews.length > 0) { %>
+                    <% for(review of listing.reviews) {%>
+                        <div class="bg-white shadow-md p-4 rounded-lg">
+                            <div class="flex items-center space-x-3">
+                            <!-- <div class="text-yellow-400"><%= review.rating %><i class="fa fa-star"></i></div> -->
+                            <p class="starability-result" data-rating="<%= review.rating %>">
+                              </p>
+                            <p class="font-semibold text-gray-800">Kratiman</p>
+                            </div>
+                            <p class="text-gray-600 mt-2"><%= review.comment %></p>
+                            <!-- <p class="text-gray-600 mt-2">This apartment exceeded my expectations. The view from the balcony is stunning, and the amenities are top-notch. Highly recommend!</p> -->
+                            <form class="d-flex justify-end" method="POST" action="/explore/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+                                <button class="btn btn-outline-danger">Delete</button>
+                            </form>
+                        </div>
+                    <% } %>
+                <% } else { %>
+                    <p>No reviews yet. Be the first to add one!</p>
+                <% } %>
+            </div>
+        </section>
+
+        <section class="bg-gray-50 py-12">
+            <div class="container mx-auto text-center">
+                <h3 class="text-2xl font-semibold text-gray-800">Property Location</h3>
+                <div id="map" class="mt-6 w-full h-80 bg-gray-200 rounded-lg"></div>
+                
+            </div>
+        </section>
+    
+
+        <script src="/public/js/map.js"></script>
+
+
+
+    <!-- <iframe src="https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAP_API_KEY&q=Luxury+Apartment"
+            class="w-full h-full rounded-lg" allowfullscreen="" loading="lazy"></iframe> -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+        <div class="row mt-5">
+            <div class="col-8 offset-2">
+                <h2 class="display-title"><%= listing.title %></h2>
+            </div>
+            <div class="card col-8 offset-2 listing-card">
+                <img src="<%= listing.image.url %>" class="card-img-top show-image" alt="listing_image">
+                <div class="card-body mt-2">
+                    <p class="card-text display-des"><%= listing.description ? listing.description : "Description is not provided." %></p>
+                </div>
+                <ul class="list-group list-group-flush display-list">
+                    <li class="list-group-item">&#8377;<%= listing.price ? listing.price.toLocaleString("en-IN") : "Price not available." %></li>
+                    <li class="list-group-item"><%= listing.location %></li>
+                    <li class="list-group-item"><%= listing.country %></li>
+                </ul>
+                <div class="card-body btn-show mb-5">
+                    <a href="/explore/<%= listing._id %>/edit" class="card-link btn btn-outline-primary col-2">Edit</a>            
+                    <form method="post" action="/explore/<%= listing.id %>?_method=DELETE">
+                       <button class="btn btn-outline-danger">Delete</button>
+                    </form>
+                </div>
+                <hr>
+        
+                <div class="m-3">
+                    <h3>Reviews:</h3> 
+                </div>
+            
+                <div class="row">
+                    <% if (listing.reviews.length > 0) { %>
+                        <% for(review of listing.reviews) {%>
+                            <div class="card col-5 mb-3 ms-3 " >
+                                <div class="card-body">
+                                    <h5 class="card-title">Kratiman Singh</h5>
+                                    <p class="card-text"><%= review.rating %><i class="fa fa-star"></i></p>
+                                    <p class="card-text"><%= review.comment %></p>
+                                    <form class="" method="POST" action="/explore/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+                                        <button class="btn btn-outline-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        <% } %>
+                    <% } else { %>
+                        <p>No reviews yet. Be the first to add one!</p>
+                    <% } %>
+                </div>
+                <div class="add-review">
+                    <p>Want to add a <a href="/explore/<%= listing._id %>/reviews" class="review-link">Review</a></p>
+                </div>
+            </div>
+        </div> -->
+        

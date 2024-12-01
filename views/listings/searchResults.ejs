@@ -1,0 +1,24 @@
+<% layout("/layouts/boilerplate") %>
+
+<!-- searchResults.ejs -->
+<section class="container mx-auto py-12">
+    <h2 class="text-3xl font-semibold text-center">Search Results</h2>
+    <% if (results.length > 0) { %>
+      <section class="container mx-auto py-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <% results.forEach(result => { %>
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition duration-300">
+              <img src="<%= result.image?.url || '/path/to/default-image.jpg' %>" class="w-full h-48 object-cover" alt="<%= result.image?.alt || 'default_image' %>">
+              <div class="p-6">
+                <h3 class="text-xl font-semibold"><%= result.title %></h3>
+                <p class="mt-2 text-gray-700">&#8377;<%= result.price %>/Night</p>
+                <a href="/explore/<%= result._id %>" class="text-blue-500 mt-4 inline-block">View More</a>
+              </div>
+            </div>
+        <% }) %>
+      </section>
+    <% } else { %>
+      <p class="text-center text-gray-700 mt-8">No results found. Try a different search.</p>
+    <% } %>
+</section>
+
+  

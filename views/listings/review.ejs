@@ -1,0 +1,71 @@
+<% layout("/layouts/boilerplate") %>
+
+
+<div class="mt-8">
+    <h4 class="text-xl font-semibold text-gray-800 mb-4">Add Your Review</h4>
+    <form novalidate method="post" action="/explore/<%= listing.id %>/reviews" class="bg-white shadow-md rounded-lg p-6 needs-validation">
+        <div class="mb-4">
+            <label for="range" class="block text-gray-700">Rating:</label>
+            <fieldset class="starability-heart mt-2">
+                <input type="radio" id="no-rate" class="input-no-rate" name="reviews[rating]" value="0" checked aria-label="No rating." />
+                <input type="radio" id="first-rate1" name="reviews[rating]" value="1" />
+                <label for="first-rate1" title="Terrible">1 star</label>
+                <input type="radio" id="first-rate2" name="reviews[rating]" value="2" />
+                <label for="first-rate2" title="Not good">2 stars</label>
+                <input type="radio" id="first-rate3" name="reviews[rating]" value="3" />
+                <label for="first-rate3" title="Average">3 stars</label>
+                <input type="radio" id="first-rate4" name="reviews[rating]" value="4" />
+                <label for="first-rate4" title="Very good">4 stars</label>
+                <input type="radio" id="first-rate5" name="reviews[rating]" value="5" />
+                <label for="first-rate5" title="Amazing">5 stars</label>
+            </fieldset>
+        </div>
+
+        <div class="mb-4">
+            <label for="comment" class="block text-gray-700">Your Comment:</label>
+            <textarea id="comment" name="reviews[comment]" rows="4" class="w-full p-2 mt-2 border border-gray-300 rounded-lg" required></textarea>
+        </div>
+        <button type="submit" class="text-white bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg">Submit Review</button>
+    </form>
+</div>
+
+
+
+
+
+
+
+<!-- USELESS CODE RIGHT NOW -->
+
+<!-- <input type="text" id="name" name="name" class="w-full p-2 mt-2 border border-gray-300 rounded-lg" required> -->
+<!-- <div class="mb-4">
+    <label for="rating" class="block text-gray-700">Rating</label>
+    <select id="rating" name="rating" class="w-full p-2 mt-2 border border-gray-300 rounded-lg" required>
+        <option value="5">⭐⭐⭐⭐⭐</option>
+        <option value="4">⭐⭐⭐⭐</option>
+        <option value="3">⭐⭐⭐</option>
+        <option value="2">⭐⭐</option>
+    <option value="1">⭐</option>
+  </select>
+</div> -->
+
+
+        <!-- <div class="mt-8">
+            <h4 class="text-xl font-semibold text-gray-800 mb-4">Add Your Review</h4>
+            <div class="card col-6 offset-3 listing-card">
+                <div class="col-12 mb-5">
+                    <form class="needs-validation" novalidate method="post" action="/explore/<%= listing.id %>/reviews">
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="range">Rating:</label>
+                            <input class="form-range range" type="range" type="range" name="reviews[rating]" min="1" max="5">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="comment">Comment:</label>
+                            <textarea class="form-control" id="comment" name="reviews[comment]" placeholder="Add a comment..." rows="5" required></textarea>
+                            <div class="invalid-feedback">Add a Comment before submitting!</div>
+                        </div>
+                        <button class="btn btn-outline-success mt-2">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div> -->
