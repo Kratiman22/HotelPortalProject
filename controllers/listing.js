@@ -60,39 +60,6 @@ module.exports.createListing = async (req, res, next) => {
         next(err);
     }
 };
-
-
-
-// module.exports.createListing = async (req, res, next) => {
-//     // const countryNames = Object.values(countries).map(country => country.name);
-//     const apiKey = process.env.GEOAPIFY_API_MAP; // Replace with your Geoapify API key
-//     const address = req.body.listing.location;
-
-//     const geocodeUrl = `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(address)}&apiKey=${apiKey}`;
-
-//     fetch(geocodeUrl)
-//     .then(response => response.json())
-//     // .then(response => {
-//         // if (response.features && response.features.length > 0) {
-//         //     const coordinates = response.features[0].geometry;
-//         //     console.log("Coordinates:", coordinates); // [longitude, latitude]
-//         // }
-//     // });
-
-//     let url = req.file.path;
-//     let filename = req.file.filename;
-
-//     const newListing = new Listing(req.body.listing);
-//     newListing.geometry = response.features.geometry;
-//     newListing.owner = req.user._id;
-//     newListing.image = {url, filename};
-//     let savedListing = await newListing.save();
-//     console.log(savedListing);
-//     req.flash("success", "New Data Added Successfully!");
-//     res.redirect("/explore");
-// };
-
-
 module.exports.editListing = async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
