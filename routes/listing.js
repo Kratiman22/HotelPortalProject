@@ -1,28 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync.js");
-const ExpressError = require("../utils/ExpressError.js");
-const {listingSchema} = require("../Schema.js");
 const Listing = require("../models/listing.js");
-const {isLoggedIn} = require("../middleware.js");
+const {isLoggedIn, isOwner, validateListing} = require("../middleware.js");
 const multer = require("multer");
 const {storage} = require("../cloudConfig.js");
 const upload = multer({ storage });
 
 const listingController = require("../controllers/listing.js");
-
-
-
-const validateListing = (req, res, next) => {
-    let {error} = listingSchema.validate(req.body);
-    if(error){
-        let errMsg = error.details.map((el) => el.message).join(",");
-        // console.log(error);
-        throw new ExpressError(400, errMsg);
-    }else{
-        next();
-    }
-};
 
 
 
@@ -45,13 +30,14 @@ router
     .get(wrapAsync(listingController.showListing))
     .put(
         isLoggedIn,
+        isOwner,
         upload.single("listing[image]"),
         validateListing,
         wrapAsync(listingController.updateListing))
-    .delete(isLoggedIn ,wrapAsync(listingController.destroyListing));
+    .delete(isLoggedIn, isOwner, wrapAsync(listingController.destroyListing));
 
 
 // Edit Route
-router.get("/:id/edit", isLoggedIn ,wrapAsync(listingController.editListing));
+router.get("/:id/edit", isLoggedIn, isOwner, wrapAsync(listingController.editListing));
 
 module.exports = router;

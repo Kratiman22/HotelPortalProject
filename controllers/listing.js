@@ -1,4 +1,6 @@
+const { response } = require("express");
 const Listing = require("../models/listing.js")
+const fetch = require("node-fetch");
 
 module.exports.index = async (req, res) => {
     const allData = await Listing.find({});
@@ -29,17 +31,66 @@ module.exports.showListing = async (req, res) => {
 
 
 module.exports.createListing = async (req, res, next) => {
-    // const countryNames = Object.values(countries).map(country => country.name);
-    let url = req.file.path;
-    let filename = req.file.filename;
+    try {
+        const apiKey = process.env.GEOAPIFY_API_MAP;
+        const address = req.body.listing.location;
+        const geocodeUrl = `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(address)}&apiKey=${apiKey}`;
 
-    const newListing = new Listing(req.body.listing);
-    newListing.owner = req.user._id;
-    newListing.image = {url, filename};
-    await newListing.save();
-    req.flash("success", "New Data Added Successfully!");
-    res.redirect("/explore");
+        const geocodeResponse = await fetch(geocodeUrl);
+        const geocodeData = await geocodeResponse.json();
+
+        // Use safe access with optional chaining and default coordinates
+        const coordinates = geocodeData.features?.[0]?.geometry?.coordinates || [0, 0];
+
+        let url = req.file.path;
+        let filename = req.file.filename;
+
+        const newListing = new Listing(req.body.listing);
+        newListing.geometry = { type: "Point", coordinates }; // Always define geometry
+        newListing.owner = req.user._id;
+        newListing.image = { url, filename };
+
+        const savedListing = await newListing.save();
+        console.log(savedListing);
+
+        req.flash("success", "New Data Added Successfully!");
+        res.redirect("/explore");
+    } catch (err) {
+        console.error("Error creating listing:", err.message);
+        next(err);
+    }
 };
+
+
+
+// module.exports.createListing = async (req, res, next) => {
+//     // const countryNames = Object.values(countries).map(country => country.name);
+//     const apiKey = process.env.GEOAPIFY_API_MAP; // Replace with your Geoapify API key
+//     const address = req.body.listing.location;
+
+//     const geocodeUrl = `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(address)}&apiKey=${apiKey}`;
+
+//     fetch(geocodeUrl)
+//     .then(response => response.json())
+//     // .then(response => {
+//         // if (response.features && response.features.length > 0) {
+//         //     const coordinates = response.features[0].geometry;
+//         //     console.log("Coordinates:", coordinates); // [longitude, latitude]
+//         // }
+//     // });
+
+//     let url = req.file.path;
+//     let filename = req.file.filename;
+
+//     const newListing = new Listing(req.body.listing);
+//     newListing.geometry = response.features.geometry;
+//     newListing.owner = req.user._id;
+//     newListing.image = {url, filename};
+//     let savedListing = await newListing.save();
+//     console.log(savedListing);
+//     req.flash("success", "New Data Added Successfully!");
+//     res.redirect("/explore");
+// };
 
 
 module.exports.editListing = async (req, res) => {
@@ -57,11 +108,11 @@ module.exports.editListing = async (req, res) => {
 
 module.exports.updateListing = async (req, res) => {
     let { id } = req.params;
-    let listing = await Listing.findById(id);
-    if(!listing.owner._id.equals(res.locals.currUsr._id)){
-        req.flash("error", "You don't have permission to edit");
-        return res.redirect(`/explore/${id}`);
-    }
+    // let listing = await Listing.findById(id);
+    // if(!listing.owner._id.equals(res.locals.currUsr._id)){
+    //     req.flash("error", "You don't have permission to edit");
+    //     return res.redirect(`/explore/${id}`);
+    // }
     let listings = await Listing.findByIdAndUpdate(id, {...req.body.listing});
 
     if(typeof req.file !== "undefined"){

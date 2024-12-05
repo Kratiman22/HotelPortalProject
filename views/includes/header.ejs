@@ -1,9 +1,9 @@
 
- <header class="py-10 navbar-expand-md bg-white-600 border-bottom">
+ <header class="py-10 navbar-expand-md border-bottom">
   <div class="container-fluid d-flex justify-content-between">
     <a class="navbar-brand text-light d-flex flex-column align-items-center text-center" href="/">
-      <i class="fas fa-hotel text-black" style="font-size: 2.5rem;"></i>
-      <p class="head-text text-black" style="font-size: 1.5rem;">DreamDWell</p>
+      <i class="header-text fas fa-hotel" style="font-size: 2.5rem;"></i>
+      <p class="header-text head-text" style="font-size: 1.5rem;">DreamDWell</p>
     </a>
     <!-- <a class="navbar-brand text-light" href="/"><i class="fas fa-leaf"></i><p class="head-text">DreamDWell</p></a> -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,9 +11,15 @@
     </button>
     <div class="text-center w-100 text-white">
       <h1 class="text-5xl font-bold text-yellow-500">Welcome to DreamDWell</h1>
-      <p class="text-lg mt-4 text-black">Find your perfect home, effortlessly.</p>
+      <p class="header-text text-lg mt-4">Find your perfect home, effortlessly.</p>
     </div>
-    <div class="dropdown ms-auto">
+    <div class="dropdown ms-auto d-flex gap-3">
+      <!-- <div id="darkModeToggle">
+        <label class="switch">
+          <input type="checkbox" />
+          <span class="slider"></span>
+        </label>
+      </div> -->
       <button 
         class="btn btn-secondary dropdown-toggle d-flex align-items-center" 
         type="button" 
@@ -23,6 +29,11 @@
         <i class="fas fa-user-circle me-2"></i> Profile
       </button>
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+        <!-- <li>
+          <button id="darkModeToggle" class="dropdown-item">
+            <i class="fas fa-moon me-2"></i> Dark Mode
+          </button>
+        </li> -->
         <% if(!currUsr) {  %>
         <li>
           <a class="dropdown-item" href="/signup">
@@ -66,14 +77,12 @@
     <h2 class="text-4xl font-bold">Your Future Home Awaits</h2>
     <p class="mt-4">Explore properties that match your lifestyle.</p>
 
-    <!-- Add a secondary CTA Button -->
     <div class="mt-8">
       <a href="/explore" class="bg-green-500 text-white px-6 py-2 rounded-md shadow-lg hover:bg-green-600 transition">
         Explore Listings
       </a>
     </div>
 
-    <!-- Additional Information -->
     <div class="mt-8">
       <p class="text-lg">Find your dream home with ease. Browse homes, apartments, and more!</p>
     </div>
@@ -81,9 +90,9 @@
 </section>
 
 
-<section class="bg-white py-12 text-center">
-  <section class="bg-white py-12 text-center">
-    <h2 class="text-3xl font-semibold">Start Your Search</h2>
+<section class="search py-12 text-center">
+  <section class="search py-12 text-center">
+    <h2 class="header-text text-3xl font-semibold">Start Your Search</h2>
     <form action="/search" method="GET" class="mt-6">
       <input 
         type="text" 
@@ -102,6 +111,38 @@
     <a href="/explore" class="bg-gray-500 text-white px-6 py-2 rounded-md shadow-lg hover:bg-gray-600 transition">Show All</a>
   </div>
 </section>
+
+
+
+
+<script>
+  // Check if dark mode is saved in localStorage and apply it
+if (localStorage.getItem('darkMode') === 'enabled') {
+    document.body.classList.add('dark-mode');
+    document.header.classList.add('dark-mode');
+}
+
+// Function to toggle dark mode
+function toggleDarkMode() {
+    const body = document.body;
+    const header = document.header;
+
+    // Toggle the dark-mode class
+    body.classList.toggle('dark-mode');
+    header.classList.toggle('dark-mode');
+
+    // Save the current mode in localStorage
+    if (body.classList.contains('dark-mode')|| header.classList.contains('dark-mode')) {
+        localStorage.setItem('darkMode', 'enabled');
+    } else {
+        localStorage.setItem('darkMode', 'disabled');
+    }
+}
+
+// Add event listener to the button
+document.getElementById('darkModeToggle').addEventListener('click', toggleDarkMode);
+
+</script>
 
 
 
