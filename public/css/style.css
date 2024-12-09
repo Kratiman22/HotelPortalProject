@@ -164,3 +164,13 @@ button.dark-mode-btn {
    color: white;
 }
 
+
+
+/* HR ruler */
+hr.my-4 {
+   border: 0;
+   border-top: 1px solid #434141; /* Change the color to your preference */
+   margin-top: 20px;
+   margin-bottom: 20px;
+ }
+ 
